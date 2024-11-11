@@ -1,0 +1,98 @@
+#Employee number integer
+#Employee name: string
+#Age: interger
+#Number of dependants: integer
+#hourly rate: real;
+
+import csv
+
+employee_data = [
+    {"Employee number": 2100, "Name": "John Takes", "Age": 17, "No. of Dependants": 0, "Rate": 9.60},
+    {"Employee number": 3889, "Name": "Sarah Chips", "Age": 19, "No. of Dependants": 1, "Rate": 10.23},
+    {"Employee number": 2222, "Name": "Mike Mammy", "Age": 65, "No. of Dependants": 1, "Rate": 16.05},
+    {"Employee number": 1801, "Name": "Dick Duster", "Age": 39, "No. of Dependants": 3, "Rate": 14.15},
+    {"Employee number": 4144, "Name": "Sarah Hoops", "Age": 31, "No. of Dependants": 4, "Rate": 12.85},
+    {"Employee number": 1111, "Name": "Sam Samoya", "Age": 39, "No. of Dependants": 2, "Rate": 13.50},
+    {"Employee number": 1357, "Name": "Heidi hebbs", "Age": 25, "No. of Dependants": 3, "Rate": 12.50},
+    {"Employee number": 2534, "Name": "Mike Ibeh", "Age": 40, "No. of Dependants": 2, "Rate": 14.95},
+    {"Employee number": 3011, "Name": "Tim Yuwati", "Age": 21, "No. of Dependants": 5, "Rate": 12.75},
+    {"Employee number": 2888, "Name": "Mary Marylen", "Age": 29, "No. of Dependants": 0, "Rate": 13.95},
+    {"Employee number": 3414, "Name": "Kate perry", "Age": 22, "No. of Dependants": 1, "Rate": 12.80},
+    {"Employee number": 1516, "Name": "Chris Tark", "Age": 23, "No. of Dependants": 2, "Rate": 17.60},
+
+]
+main_file = "EmpFile1.csv"
+def EmpFile1():
+    # file to store data
+
+
+    #create file to store data
+    with open("EmpFile1.csv", mode="w", newline='') as file:
+        Write = csv.DictWriter(file, fieldnames=employee_data[0].keys())
+        Write.writeheader()
+        Write.writerows(employee_data)
+
+    print(f"Employee records have been saved to {main_file}")
+
+
+
+def EmpFile2():
+    input_file = "EmpFile1.csv"
+    output_file = "EmpFile2.csv"
+
+    # Filter conditions: age > 30, dependants > 3, and rate > 12.00
+    filtered_employees = []
+
+    # Reading data from input file and filtering based on criteria
+
+    with open(input_file, mode="r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            # Convert the Age, No. of Dependants, and Rate values to integers/floats for comparison
+            age = int(row["Age"])
+            dependants = int(row["No. of Dependants"])
+            rate = float(row["Rate"])
+
+            if age > 30 and dependants > 3 and rate > 12.00:
+                filtered_employees.append(row)
+
+    # Writing the filtered employees to the output file
+    if filtered_employees:
+        with open(output_file, mode="w", newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=filtered_employees[0].keys())
+            writer.writeheader()
+            writer.writerows(filtered_employees)
+
+    print(f"Filtered employee records have been saved to {output_file}")
+
+def EmpFile3():
+    # Input and output file names
+    input_file = "EmpFile1.csv"
+    output_file = "EmpFile3.csv"
+
+    # Filter conditions: age > 30, dependants > 3, and rate > 12.00
+    filtered_employees = []
+
+    # Reading data from input file and filtering based on criteria
+    with open(input_file, mode="r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            # Convert the Age, No. of Dependants, and Rate values to integers/floats for comparison
+            age = int(row["Age"])
+            dependants = int(row["No. of Dependants"])
+            rate = float(row["Rate"])
+ 
+            if age < 25 and dependants == 0:
+                filtered_employees.append(row)
+
+    # Writing the filtered employees to the output file
+    if filtered_employees:
+        with open(output_file, mode="w", newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=filtered_employees[0].keys())
+            writer.writeheader()
+            writer.writerows(filtered_employees)
+
+    print(f"Filtered employee records have been saved to {output_file}")
+
+
+EmpFile3()
